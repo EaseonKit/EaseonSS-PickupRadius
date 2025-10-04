@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "template-mod",
+	"id": "easeon-ss-pickupradius",
 	"version": "${version}",
 	"name": "Template Mod",
 	"description": "This is an example description! Tell everyone what your mod is about!",
@@ -12,23 +12,13 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/template-mod/icon.png",
+	"icon": "assets/easeon/easeon-ss-pickupradius.jpg",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.TemplateMod"
-		],
-		"client": [
-			"com.example.TemplateModClient"
+			"com.easeon.ss.pickupradius.Easeon"
 		]
 	},
-	"mixins": [
-		"template-mod.mixins.json",
-		{
-			"config": "template-mod.client.mixins.json",
-			"environment": "client"
-		}
-	],
 	"depends": {
 		"fabricloader": ">=0.17.2",
 		"minecraft": "~1.21.9",
