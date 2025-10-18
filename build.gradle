@@ -7,7 +7,7 @@ version = project.mod_version
 group = project.maven_group
 
 base {
-    archivesName = "easeon.ss.pickupradius.teron.fabric-${project.minecraft_version}"
+    archivesName = "easeon.ss.pickupradius.teron.fabric"
 }
 
 repositories {
