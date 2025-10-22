@@ -8,7 +8,7 @@ import net.minecraft.util.math.Box;
 
 public class PickupRadiusHandler {
     public static void onServerTick(MinecraftServer server) {
-        var radius = Easeon.CONFIG.getPickupRadius();
+        var radius = Easeon.config.pickupRadius;
 
         for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
             var world = player.getEntityWorld();

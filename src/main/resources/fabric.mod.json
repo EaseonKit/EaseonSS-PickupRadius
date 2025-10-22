@@ -1,25 +1,25 @@
 {
 	"schemaVersion": 1,
-	"id": "easeon-ss-pickupradius",
-	"version": "${version}",
-	"name": "EaseonSS - PickupRadius",
-	"description": "A server-side mod that lets you adjust item and experience orb pickup radius from 1 to 15 blocks with a simple command.",
-	"authors": [
-		"Teron"
-	],
+    "id": "easeon-ss-${mod_package}",
+    "version": "${version}",
+    "name": "EaseonSS - ${mod_name}",
+    "description": "${mod_description}",
+    "authors": [
+        "Teron"
+    ],
     "license": "All Rights Reserved",
-	"icon": "assets/easeon/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"com.easeon.ss.pickupradius.Easeon"
-		]
-	},
+    "icon": "assets/easeon/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.easeon.ss.${mod_package}.Easeon"
+        ]
+    },
 	"depends": {
 		"fabricloader": ">=0.17.2",
 		"minecraft": ">=1.21.9 <=1.21.10",
 		"java": ">=21",
-		"fabric-api": "*"
+      "easeon-ss-core": "*"
 	},
 	"suggests": {
 		"another-mod": "*"
