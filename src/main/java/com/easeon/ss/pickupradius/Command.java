@@ -1,5 +1,6 @@
 package com.easeon.ss.pickupradius;
 
+import com.easeon.ss.core.util.interaction.EaseonMessageFormat;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
@@ -11,30 +12,18 @@ import static net.minecraft.server.command.CommandManager.literal;
 import static net.minecraft.server.command.CommandManager.argument;
 
 public class Command {
-    private static int opLevel;
-    private static String name;
+    private static String displayName;
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-        opLevel = Easeon.config.requiredOpLevel;
-        name = Easeon.info.name
-                .replaceAll(".*- ", "")
-                .replaceAll("([a-z])([A-Z])", "$1 $2").toLowerCase();
+        displayName = Easeon.info.displayName;
 
         dispatcher.register(literal("easeon")
-            .requires(source -> source.hasPermissionLevel(opLevel))
-            .then(literal(name.replaceAll(" ", ""))
-                .executes(Command::sendStatus)
-                .then(argument("value", IntegerArgumentType.integer(1, 15))
-                        .executes(Command::setRadius)
-                )
+            .requires(source -> source.hasPermissionLevel(Easeon.config.requiredOpLevel))
+            .then(literal(Easeon.info.commandName)
+                .executes(ctx -> to(ctx.getSource(), EaseonMessageFormat.valueStatus(displayName, Easeon.config.pickupRadius)))
+                .then(argument("value", IntegerArgumentType.integer(1, 20)).executes(Command::setRadius))
             )
         );
-    }
-
-    private static int sendStatus(CommandContext<ServerCommandSource> ctx) {
-        int radius = Easeon.config.pickupRadius;
-        to(ctx.getSource(), String.format("%scurrent pickup radius: %s%d", PREFIX, YELLOW, radius));
-        return 1;
     }
 
     private static int setRadius(CommandContext<ServerCommandSource> ctx) {
@@ -42,10 +31,11 @@ public class Command {
         int newValue = IntegerArgumentType.getInteger(ctx, "value");
 
         if (oldValue == newValue) {
-            to(ctx.getSource(), String.format("%s%s%s is already %d", PREFIX, YELLOW, name, newValue));
+            to(ctx.getSource(), EaseonMessageFormat.valueAlready(displayName, newValue));
         } else {
             Easeon.config.setPickupRadius(newValue);
-            toAll(ctx.getSource(), String.format("%s%s changed: %s%d%s → %s%d", PREFIX, name, YELLOW, oldValue, WHITE, GREEN, newValue));
+            Easeon.updatePickupRadiusTask();
+            toAll(ctx.getSource(), EaseonMessageFormat.valueChanged(displayName, oldValue, newValue));
         }
         return 1;
     }

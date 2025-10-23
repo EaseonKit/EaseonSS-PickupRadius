@@ -12,7 +12,7 @@ public class PickupRadiusHandler {
 
         for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
             var world = player.getEntityWorld();
-            var range = new Box(
+            var range = new Box (
                 player.getX() - radius, player.getY() - radius, player.getZ() - radius,
                 player.getX() + radius, player.getY() + radius, player.getZ() + radius
             );
@@ -23,7 +23,6 @@ public class PickupRadiusHandler {
                 }
             }
 
-            // 경험치 오브 처리
             for (ExperienceOrbEntity xpOrb : world.getEntitiesByClass(ExperienceOrbEntity.class, range, entity -> true)) {
                 if (player.squaredDistanceTo(xpOrb) <= radius * radius) {
                     xpOrb.onPlayerCollision(player);
