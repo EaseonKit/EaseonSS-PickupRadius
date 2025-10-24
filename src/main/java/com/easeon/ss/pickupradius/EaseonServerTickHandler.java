@@ -6,10 +6,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.Box;
 
-public class PickupRadiusHandler {
-    public static void onServerTick(MinecraftServer server) {
-        var radius = Easeon.config.pickupRadius;
-
+public class EaseonServerTickHandler {
+    public static void onServerTick(MinecraftServer server, int radius) {
         for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
             var world = player.getEntityWorld();
             var range = new Box (

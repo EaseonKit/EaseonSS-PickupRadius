@@ -7,6 +7,11 @@
     "authors": [
         "Teron"
     ],
+    "contact": {
+      "homepage": "https://github.com/EaseonKit?tab=repositories&q=&type=&language=&sort=name",
+      "sources": "https://github.com/EaseonKit/EaseonSS-${mod_name}",
+      "issues": "https://github.com/EaseonKit/EaseonSS-${mod_name}/issues"
+    },
     "license": "All Rights Reserved",
     "icon": "assets/easeon/icon.png",
     "environment": "*",
