@@ -3,6 +3,9 @@
 **Loader:** `Fabric`  
 **Side:** `Server-Side`, `Singleplayer`
 
+**This mod requires <a href="https://modrinth.com/mod/easeon-ss-core" target="_blank">EaseonSS-Core</a>**
+
+
 ## Overview
 
 **Pickup Radius** is a lightweight Fabric mod that lets you control how far away players can collect items and experience orbs.  
